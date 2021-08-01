@@ -2,6 +2,8 @@ package com.devs4j.users.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,8 +27,12 @@ public class UserService {
 		
 	}
 
-	public List<User> getUsers() {
+	public List<User> getUsers(String startWith) {
+		if (startWith!= null) {
+			return users.stream().filter(u -> u.getUsername().startsWith(startWith)).collect(Collectors.toList());
+		}else {
 		return users;
+		}
 	}
 	
 	public User getUserByUsername(String username) {
