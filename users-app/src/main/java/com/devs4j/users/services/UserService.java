@@ -51,4 +51,9 @@ public class UserService {
 		userToBeUpdated.setUsername(user.getUsername());
 		return userToBeUpdated;
 	}
+	
+	public void deleteUser(String username) {
+		User userByUsername = getUserByUsername(username);
+		users.remove(userByUsername);
+	}
 }
